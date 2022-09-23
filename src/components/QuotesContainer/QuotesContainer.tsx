@@ -4,13 +4,23 @@ import './QuotesContainer.css'
 
 const QuotesContainer: React.FC<quoteType> = ({ quotes, apiQuotes, apiPageQuotes }) => {
 
+const [favorite, setFavorite] = useState<[]>([])
+
+  const handleClick = (): void => {
+    console.log('handleClick')
+    console.log('quotes', quotes)
+    // if (quotes[0].isFavorite === true) {
+    //   setFavorite([])
+    // }
+  }
+
   const renderUserQuotes = (): JSX.Element[] => {
     console.log(quotes)
     return quotes.map(quote => {
       return (
         <li key={quote.id}>
           <div className='user-quote'> " {quote.userQuote} " - You </div>
-          <button className='favorite-button'> 💚 </button>
+          <button className='favorite-button' onClick={handleClick}> 💚 </button>
         </li>
       )
     })
@@ -42,8 +52,9 @@ const QuotesContainer: React.FC<quoteType> = ({ quotes, apiQuotes, apiPageQuotes
 
   return (
     <ul>
-      {renderApiQuotes()}
+      {favorite}
       {renderUserQuotes()}
+      {renderApiQuotes()}
       {renderPageApiQuotes()}
     </ul>
   )

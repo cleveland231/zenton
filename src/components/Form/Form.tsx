@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
+import { quoteType } from '../App/App';
 import './Form.css';
-
-type quoteType = {
-    quotes: {
-      userQuote: string
-      setUserQuote?: any
-      isFavorite?: boolean
-      apiQuote?: string
-      id?: number
-    }[]
-    apiQuotes: {
-      apiQuotes: string
-      apiAuthor?: string
-      apiId?: string
-    }[]
-  }
 
 type formProps = {
     quotes: quoteType['quotes']

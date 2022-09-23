@@ -1,0 +1,20 @@
+li {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+ul {
+    padding: 1rem;
+}
+
+.favorite-button {
+    border: none;
+    background: none;
+}
+
+.user-quote {
+    width: 80%;
+    border-top: 1px solid black;
+    padding: 2rem;
+}
+

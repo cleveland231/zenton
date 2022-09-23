@@ -87,7 +87,6 @@ const App = () => {
 
   }, [])
 
-
   return (
     <div className='app'>
 
@@ -97,27 +96,31 @@ const App = () => {
         {/* <NavLink className='authors' to='/authors'> Authors </NavLink> */}
         <NavLink className='favorites' to='/favorites'> Favorites </NavLink>
       </div>
-      {/* <Switch> */}
+
       <div className='main'>
+        <Switch>
 
-        <Route exact path='/'>
-        <Form
-          quotes={quotes}
-          setQuotes={setQuotes}
-        />
-        <QuotesContainer
-          quotes={quotes}
-          apiQuotes={apiQuotes}
-          apiPageQuotes={apiPageQuotes}
-        />
-        </Route>
+          <Route exact path='/'>
+            <Form
+              quotes={quotes}
+              setQuotes={setQuotes}
+            />
 
-        <Route exact path='/favorites'>
-          <Favorites />
-        </Route>
+            <QuotesContainer
+              quotes={quotes}
+              apiQuotes={apiQuotes}
+              apiPageQuotes={apiPageQuotes}
+            />
+          </Route>
 
+          <Route exact path='/favorites'>
+            <Favorites />
+          </Route>
+
+          <Route render={() => <h2>This Path Does Not Exist!</h2>} />
+
+        </Switch>
       </div>
-      {/* </Switch> */}
     </div>
   )
 }

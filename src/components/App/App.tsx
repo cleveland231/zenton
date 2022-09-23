@@ -20,6 +20,11 @@ export type quoteType = {
     apiPageId: string
     isFavorite?: boolean
   }[]
+  favoritedQuotes: {
+    favQuote: string
+    favAuthor: string
+    id?: number
+  }[]
 }
 
 type userQuoteType = {
@@ -35,7 +40,7 @@ const App = () => {
   const [quotes, setQuotes] = useState<userQuoteType[]>([
     {
       userQuote: 'user quote test',
-      isFavorite: true,
+      isFavorite: false,
       id: 1
     }
   ])
@@ -114,7 +119,7 @@ const App = () => {
           </Route>
 
           <Route exact path='/favorites'>
-            <Favorites />
+            <Favorites favorited={favorited} />
           </Route>
 
           <Route render={() => <h2>This Path Does Not Exist!</h2>} />

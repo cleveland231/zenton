@@ -1,0 +1,17 @@
+.form-input {
+    height: 8rem;
+    width: 80%;
+    background-color: beige;
+    border: none;
+    resize: none;
+}
+
+.form-style {
+    display: flex;
+    align-items: flex-end;
+}
+
+.quote-button {
+    background-color: #8DFF9D;
+    border-radius: 10px;
+}

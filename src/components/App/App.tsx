@@ -8,23 +8,31 @@ import './App.css'
 
 export type quoteType = {
   quotes: userQuoteType[]
-  apiQuotes: {
-    apiQuotes: string
-    apiAuthor: string
-    apiId: string
-    isFavorite?: boolean
-  }[]
-  apiPageQuotes: {
-    apiPageQuotes: string
-    apiPageAuthor: string
-    apiPageId: string
-    isFavorite?: boolean
-  }[]
-  favoritedQuotes: {
-    favQuote: string
-    favAuthor: string
-    id?: number
-  }[]
+  apiQuotes: apiQuotes[]
+  apiPageQuotes: apiPageQuotes[]
+  favorited: favorited[]
+  clickFavorite?: any
+}
+
+type favorited = {
+  favQuote: string
+  favAuthor: string
+  id: number
+  isFavorite?: boolean
+}
+
+type apiPageQuotes = {
+  apiPageQuotes: string
+  apiPageAuthor: string
+  apiPageId: string
+  isFavorite?: boolean
+}
+
+type apiQuotes = {
+  apiQuotes: string
+  apiAuthor: string
+  apiId: string
+  isFavorite?: boolean
 }
 
 type userQuoteType = {
@@ -45,7 +53,7 @@ const App = () => {
     }
   ])
 
-  const [apiQuotes, setApiQuotes] = useState<quoteType['apiQuotes']>([
+  const [apiQuotes, setApiQuotes] = useState<apiQuotes[]>([
     {
       apiId: '222',
       apiQuotes: 'random api test',
@@ -53,11 +61,19 @@ const App = () => {
     }
   ])
 
-  const [apiPageQuotes, setApiPageQuotes] = useState<quoteType['apiPageQuotes']>([
+  const [apiPageQuotes, setApiPageQuotes] = useState<apiPageQuotes[]>([
     {
       apiPageId: '333',
       apiPageQuotes: 'page api test',
       apiPageAuthor: 'brother beretta',
+    }
+  ])
+
+  const [favorited, setFavorited] = useState<favorited[]>([
+    {
+      favQuote: 'favoriteQuote',
+      favAuthor: 'fav author',
+      id: 444
     }
   ])
 
@@ -92,13 +108,24 @@ const App = () => {
 
   }, [])
 
+  const clickFavorite = (favQuote: any) => {
+    // console.log('handleClick')
+    // console.log('quotes', quotes)
+    // console.log('apiPage', apiPageQuotes)
+    // setHeartColor(emptyHeart)
+    favQuote.isFavorite = true
+    if (favQuote.isFavorite) {
+      setFavorited([...favorited, favQuote])
+      console.log('favs!!!', favorited);
+    }
+  }
+
   return (
     <div className='app'>
 
       <div className='navigation'>
         <h1 className='zenTon'> zenton 🌱 </h1>
         <NavLink className='home' to='/'> Home </NavLink>
-        {/* <NavLink className='authors' to='/authors'> Authors </NavLink> */}
         <NavLink className='favorites' to='/favorites'> Favorites </NavLink>
       </div>
 
@@ -115,11 +142,17 @@ const App = () => {
               quotes={quotes}
               apiQuotes={apiQuotes}
               apiPageQuotes={apiPageQuotes}
+              clickFavorite={clickFavorite}
+              favorited={favorited}
             />
           </Route>
 
           <Route exact path='/favorites'>
-            <Favorites favorited={favorited} />
+            <Favorites
+              favorited={favorited}
+              quotes={quotes}
+              apiQuotes={apiQuotes}
+              apiPageQuotes={apiPageQuotes} />
           </Route>
 
           <Route render={() => <h2>This Path Does Not Exist!</h2>} />
@@ -131,3 +164,4 @@ const App = () => {
 }
 
 export default App
+

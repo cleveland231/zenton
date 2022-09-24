@@ -4,14 +4,14 @@ import QuotesContainer from '../QuotesContainer/QuotesContainer'
 import { quoteType } from '../App/App'
 import './Favorites.css'
 
-const Favorites: any  = ({favorited}) => {
+const Favorites: React.FC<quoteType> = ({ favorited }) => {
 
   const renderfavQuotes = (): JSX.Element[] => {
-    // console.log(quotes)
-    return favorited.map(favorite => {
+    console.log('favorite page', favorited)
+    return favorited.map((favorite:any) => {
       return (
-        <li key={favorite.id}> 
-          <div className='user-quote'> " {favorite.favQuote} " - {favorite.favAuthoer} </div>
+        <li key={favorite.id ?? Date.now()}> 
+          <div className='user-quote'> " {favorite.favQuote} " - {favorite.favAuthor} </div>
         </li>
       )
     })

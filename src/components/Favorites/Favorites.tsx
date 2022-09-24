@@ -10,7 +10,7 @@ const Favorites: React.FC<quoteType> = ({ favorited }) => {
     console.log('favorite page', favorited)
     return favorited.map((favorite:any) => {
       return (
-        <li key={favorite.id ?? Date.now()}> 
+        <li key={favorite.id}> 
           <div className='user-quote'> " {favorite.favQuote} " - {favorite.favAuthor} </div>
         </li>
       )

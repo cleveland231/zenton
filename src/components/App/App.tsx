@@ -58,6 +58,7 @@ const App = () => {
       apiId: '222',
       apiQuotes: 'random api test',
       apiAuthor: 'sister beretta',
+      isFavorite: false
     }
   ])
 
@@ -66,6 +67,7 @@ const App = () => {
       apiPageId: '333',
       apiPageQuotes: 'page api test',
       apiPageAuthor: 'brother beretta',
+      isFavorite: false
     }
   ])
 
@@ -73,7 +75,8 @@ const App = () => {
     {
       favQuote: 'favoriteQuote',
       favAuthor: 'fav author',
-      id: 444
+      id: 444,
+      isFavorite: false
     }
   ])
 
@@ -109,10 +112,7 @@ const App = () => {
   }, [])
 
   const clickFavorite = (favQuote: any) => {
-    // console.log('handleClick')
-    // console.log('quotes', quotes)
-    // console.log('apiPage', apiPageQuotes)
-    // setHeartColor(emptyHeart)
+    console.log('favQuote', favQuote)
     favQuote.isFavorite = true
     if (favQuote.isFavorite) {
       setFavorited([...favorited, favQuote])
@@ -152,7 +152,8 @@ const App = () => {
               favorited={favorited}
               quotes={quotes}
               apiQuotes={apiQuotes}
-              apiPageQuotes={apiPageQuotes} />
+              apiPageQuotes={apiPageQuotes} 
+            />
           </Route>
 
           <Route render={() => <h2>This Path Does Not Exist!</h2>} />

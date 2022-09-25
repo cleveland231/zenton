@@ -24,7 +24,7 @@
 
 ## Features
    - Read zen quotes 
-   - Favorite zen quotes from [quotable](ttps://github.com/lukePeavey/quotable)
+   - Favorite zen quotes from [quotable](https://github.com/lukePeavey/quotable)
 
 ## Illustrations
 

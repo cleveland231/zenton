@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import { quoteType } from '../App/App';
 import './Form.css';
 
-type formProps = {
-    quotes: quoteType['quotes']
-    setQuotes: React.Dispatch<React.SetStateAction<quoteType['quotes']>>
-}
-
-const Form: React.FC<formProps> = ({ quotes, setQuotes }) => {
+const Form: React.FC<quoteType> = ({ quotes, setQuotes }) => {
 
     const [input, setInput] = useState({
-        userQuote: '',
+        quote: '',
         isFavorite: false,
         id: 0
     })
-
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
         setInput({
@@ -24,23 +18,22 @@ const Form: React.FC<formProps> = ({ quotes, setQuotes }) => {
     }
 
     const handleClick = (): void => {
-        if (!input.userQuote) {
+        if (!input.quote) {
             return
         }
         setQuotes([
             ...quotes,
             {
-                userQuote: input.userQuote,
-                id: input.id + 1 
+                quote: input.quote,
+                id: input.id + 1,
             }
         ])
         setInput({
-            userQuote: '',
+            quote: '',
             isFavorite: false,
             id: 0
         })
     }
-
 
     return (
         <div className='form'>
@@ -49,7 +42,7 @@ const Form: React.FC<formProps> = ({ quotes, setQuotes }) => {
             <textarea
                 className='form-input'
                 placeholder='Write a Quote?'
-                value={input.userQuote}
+                value={input.quote}
                 onChange={handleChange}
                 name='userQuote'
             />

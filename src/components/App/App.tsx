@@ -17,6 +17,7 @@ export type quoteType = {
   setQuotes?: any
   setHeartColor?: any
   heartColor?: any
+  setFavorited?: any
 }
 
 type favorited = {
@@ -53,7 +54,7 @@ const App = () => {
 
   const [favorited, setFavorited] = useState<favorited[]>([])
 
-  const [heartColor, setHeartColor] = useState<string>(emptyHeart)
+  // const [heartColor, setHeartColor] = useState<string>(emptyHeart)
 
   const formatData = (results: apiSingleData[]): void => {
     const formatted = results.map(result => {
@@ -82,7 +83,7 @@ const App = () => {
       .then(data => formatData(data.results))
   }, [])
 
-  const clickFavorite = ( favQuote: any ) => {
+  const clickFavorite = (favQuote: any) => {
     if (!favorited.includes(favQuote)) {
       setFavorited([...favorited, favQuote])
     }
@@ -91,7 +92,7 @@ const App = () => {
   return (
     <div className='app'>
       <div className='navigation'>
-        <h1 className='zenTon'> zenton 🌱 </h1>
+        <h1 className='zenton'> zenton 🌱 </h1>
         <NavLink className='home' to='/'> Home </NavLink>
         <NavLink className='favorites' to='/favorites'> Favorites </NavLink>
       </div>
@@ -101,10 +102,10 @@ const App = () => {
           <Route exact path='/'>
             <Form
               quotes={quotes}
-              setQuotes={setQuotes} 
-              apiQuotes={apiQuotes} 
-              apiPageQuotes={apiPageQuotes} 
-              favorited={favorited}            
+              setQuotes={setQuotes}
+              apiQuotes={apiQuotes}
+              apiPageQuotes={apiPageQuotes}
+              favorited={favorited}
             />
 
             <QuotesContainer
@@ -113,17 +114,18 @@ const App = () => {
               apiPageQuotes={apiPageQuotes}
               clickFavorite={clickFavorite}
               favorited={favorited}
-              setHeartColor={setHeartColor}
-              heartColor={heartColor}
+              // setHeartColor={setHeartColor}
+              // heartColor={heartColor}
             />
           </Route>
 
           <Route exact path='/favorites'>
             <Favorites
+              setFavorited={setFavorited}
               favorited={favorited}
               quotes={quotes}
               apiQuotes={apiQuotes}
-              apiPageQuotes={apiPageQuotes} 
+              apiPageQuotes={apiPageQuotes}
             />
           </Route>
 

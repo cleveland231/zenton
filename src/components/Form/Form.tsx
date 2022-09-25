@@ -17,9 +17,9 @@ const Form: React.FC<quoteType> = ({ quotes, setQuotes }) => {
     }
 
     const handleClick = (): void => {
-        // if (!input.quote) {
-        //     return
-        // }
+        if (!input.quote) {
+            return
+        }
         setQuotes([
             ...quotes,
             {

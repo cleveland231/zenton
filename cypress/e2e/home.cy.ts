@@ -15,7 +15,6 @@ describe('home page', () => {
       "dateAdded": "2020-09-09",
       "dateModified": "2020-09-09"
     })
-
   });
 
   it('Should render home page', () => {

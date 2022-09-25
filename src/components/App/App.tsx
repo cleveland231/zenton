@@ -5,8 +5,6 @@ import { fetchRandomQuote, fetchFirstPage, apiSingleData } from '../fetch/fetchA
 import Form from '../Form/Form'
 import QuotesContainer from '../QuotesContainer/QuotesContainer'
 import './App.css'
-import emptyHeart from '../../assets/empty-heart.svg'
-import greenHeart from '../../assets/green-heart.svg'
 
 export type quoteType = {
   quotes: userQuoteType[]
@@ -15,33 +13,31 @@ export type quoteType = {
   favorited: favorited[]
   clickFavorite?: any
   setQuotes?: any
-  setHeartColor?: any
-  heartColor?: any
   setFavorited?: any
 }
 
 type favorited = {
   quote: string
   author: string
-  id: string
+  id?: string
 }
 
 type apiPageQuotes = {
   quote: string
   author: string
-  id: string
+  id?: string
 }
 
 type apiQuotes = {
   quote: string
   author: string
-  id: string
+  id?: string
 }
 
 type userQuoteType = {
   quote: string
   author: string
-  id?: string
+  id?: number
 }
 
 const App = () => {
@@ -53,8 +49,6 @@ const App = () => {
   const [apiPageQuotes, setApiPageQuotes] = useState<apiPageQuotes[]>([])
 
   const [favorited, setFavorited] = useState<favorited[]>([])
-
-  // const [heartColor, setHeartColor] = useState<string>(emptyHeart)
 
   const formatData = (results: apiSingleData[]): void => {
     const formatted = results.map(result => {
@@ -114,8 +108,6 @@ const App = () => {
               apiPageQuotes={apiPageQuotes}
               clickFavorite={clickFavorite}
               favorited={favorited}
-              // setHeartColor={setHeartColor}
-              // heartColor={heartColor}
             />
           </Route>
 

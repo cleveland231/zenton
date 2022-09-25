@@ -1,5 +1,4 @@
-# zenTon
-<!-- <img width="300" alt="zenTon" src=" "> -->
+# zenton
 
 ## Table of Contents
   - [Introduction](#introduction)
@@ -14,7 +13,7 @@
 
 ## Introduction
 
-  Visit zenTon to...
+  Visit zenton to read zen quotes and write your own!
 
 ## Technologies
   - JavaScript
@@ -25,11 +24,12 @@
   - Cypress
 
 ## Features
-   - 
+   - Read zen quotes 
+   - Favorite zen quotes
 
 ## Illustrations
 
-
+<img width="300" alt="zenton" src="https://user-images.githubusercontent.com/96998327/192163679-309452fb-6cf1-45c0-80b3-a5c2169e1362.png">
 
 ## Deployed Page
 

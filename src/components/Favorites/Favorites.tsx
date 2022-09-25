@@ -7,15 +7,7 @@ import './Favorites.css'
 const Favorites: React.FC<quoteType> = ({ favorited }) => {
 
   const renderfavQuotes = (): JSX.Element[] => {
-    console.log('favorite page', favorited)
-    // const filterFav = favorited.filter((favorite:any) => {
-    //   return favorite.id === favorite.id
-    // })
-    
     return favorited.map((favorite:any) => {
-      // favorite.filter((match: any) => {
-      //   match.quote === match.quote
-      // })
       return (
         <li key={favorite.id ?? Date.now()}> 
           <div className='user-quote'> " {favorite.quote} " - {favorite.author} </div>

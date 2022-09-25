@@ -6,7 +6,6 @@ const Form: React.FC<quoteType> = ({ quotes, setQuotes }) => {
 
     const [input, setInput] = useState({
         quote: '',
-        isFavorite: false,
         id: 0
     })
 
@@ -18,9 +17,9 @@ const Form: React.FC<quoteType> = ({ quotes, setQuotes }) => {
     }
 
     const handleClick = (): void => {
-        if (!input.quote) {
-            return
-        }
+        // if (!input.quote) {
+        //     return
+        // }
         setQuotes([
             ...quotes,
             {
@@ -30,7 +29,6 @@ const Form: React.FC<quoteType> = ({ quotes, setQuotes }) => {
         ])
         setInput({
             quote: '',
-            isFavorite: false,
             id: 0
         })
     }
@@ -44,7 +42,7 @@ const Form: React.FC<quoteType> = ({ quotes, setQuotes }) => {
                 placeholder='Write a Quote?'
                 value={input.quote}
                 onChange={handleChange}
-                name='userQuote'
+                name='quote'
             />
             <button 
                 className='quote-button'

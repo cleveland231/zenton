@@ -23,67 +23,35 @@ type favorited = {
   quote: string
   author: string
   id: string
-  isFavorite?: boolean
 }
 
 type apiPageQuotes = {
   quote: string
   author: string
   id: string
-  isFavorite?: boolean
 }
 
 type apiQuotes = {
   quote: string
   author: string
   id: string
-  isFavorite?: boolean
 }
 
 type userQuoteType = {
   quote: string
   author: string
-  id: string
-  isFavorite?: boolean
+  id?: string
 }
 
 const App = () => {
 
-  const [quotes, setQuotes] = useState<userQuoteType[]>([
-    {
-      author: 'blah',
-      quote: 'user quote test',
-      isFavorite: false,
-      id: '1'
-    }
-  ])
+  const [quotes, setQuotes] = useState<userQuoteType[]>([])
 
-  const [apiQuotes, setApiQuotes] = useState<apiQuotes[]>([
-    {
-      id: '222',
-      quote: 'random api test',
-      author: 'sister beretta',
-      isFavorite: false
-    }
-  ])
+  const [apiQuotes, setApiQuotes] = useState<apiQuotes[]>([])
 
-  const [apiPageQuotes, setApiPageQuotes] = useState<apiPageQuotes[]>([
-    {
-      id: '333',
-      quote: 'page api test',
-      author: 'brother beretta',
-      isFavorite: false
-    }
-  ])
+  const [apiPageQuotes, setApiPageQuotes] = useState<apiPageQuotes[]>([])
 
-  const [favorited, setFavorited] = useState<favorited[]>([
-    {
-      quote: 'favoriteQuote',
-      author: 'fav author',
-      id: '444',
-      isFavorite: false
-    }
-  ])
+  const [favorited, setFavorited] = useState<favorited[]>([])
 
   const [heartColor, setHeartColor] = useState<string>(emptyHeart)
 
@@ -114,17 +82,9 @@ const App = () => {
       .then(data => formatData(data.results))
   }, [])
 
-  const clickFavorite = (favQuote: any, event:any) => {
-    console.log('favQuote', favQuote)
-    favQuote.isFavorite = true
-    // favQuote.id + 1
-    if (favQuote.isFavorite) {
+  const clickFavorite = ( favQuote: any ) => {
+    if (!favorited.includes(favQuote)) {
       setFavorited([...favorited, favQuote])
-      // setHeartColor(greenHeart)
-      console.log('favs!!!', favorited);
-    }
-    if (event.target.id === favQuote.id) {
-       setHeartColor(greenHeart)
     }
   }
 
@@ -155,7 +115,6 @@ const App = () => {
               favorited={favorited}
               setHeartColor={setHeartColor}
               heartColor={heartColor}
-              // event={event}
             />
           </Route>
 

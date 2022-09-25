@@ -1,0 +1,11 @@
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-color: beige;
+}
+
+.unfavorite-button {
+    border: none;
+    background: none;
+}

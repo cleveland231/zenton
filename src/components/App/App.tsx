@@ -5,6 +5,8 @@ import { fetchRandomQuote, fetchFirstPage, apiSingleData } from '../fetch/fetchA
 import Form from '../Form/Form'
 import QuotesContainer from '../QuotesContainer/QuotesContainer'
 import './App.css'
+import emptyHeart from '../../assets/empty-heart.svg'
+import greenHeart from '../../assets/green-heart.svg'
 
 export type quoteType = {
   quotes: userQuoteType[]
@@ -12,77 +14,54 @@ export type quoteType = {
   apiPageQuotes: apiPageQuotes[]
   favorited: favorited[]
   clickFavorite?: any
+  setQuotes?: any
+  setHeartColor?: any
+  heartColor?: any
+  setFavorited?: any
 }
 
 type favorited = {
-  favQuote: string
-  favAuthor: string
-  id: number
-  isFavorite?: boolean
+  quote: string
+  author: string
+  id: string
 }
 
 type apiPageQuotes = {
-  apiPageQuotes: string
-  apiPageAuthor: string
-  apiPageId: string
-  isFavorite?: boolean
+  quote: string
+  author: string
+  id: string
 }
 
 type apiQuotes = {
-  apiQuotes: string
-  apiAuthor: string
-  apiId: string
-  isFavorite?: boolean
+  quote: string
+  author: string
+  id: string
 }
 
 type userQuoteType = {
-  userQuote?: string
-  setUserQuote?: any
-  isFavorite?: boolean
-  apiQuote?: string
-  id?: number
+  quote: string
+  author: string
+  id?: string
 }
 
 const App = () => {
 
-  const [quotes, setQuotes] = useState<userQuoteType[]>([
-    {
-      userQuote: 'user quote test',
-      isFavorite: false,
-      id: 1
-    }
-  ])
+  const [quotes, setQuotes] = useState<userQuoteType[]>([])
 
-  const [apiQuotes, setApiQuotes] = useState<apiQuotes[]>([
-    {
-      apiId: '222',
-      apiQuotes: 'random api test',
-      apiAuthor: 'sister beretta',
-    }
-  ])
+  const [apiQuotes, setApiQuotes] = useState<apiQuotes[]>([])
 
-  const [apiPageQuotes, setApiPageQuotes] = useState<apiPageQuotes[]>([
-    {
-      apiPageId: '333',
-      apiPageQuotes: 'page api test',
-      apiPageAuthor: 'brother beretta',
-    }
-  ])
+  const [apiPageQuotes, setApiPageQuotes] = useState<apiPageQuotes[]>([])
 
-  const [favorited, setFavorited] = useState<favorited[]>([
-    {
-      favQuote: 'favoriteQuote',
-      favAuthor: 'fav author',
-      id: 444
-    }
-  ])
+  const [favorited, setFavorited] = useState<favorited[]>([])
+
+  // const [heartColor, setHeartColor] = useState<string>(emptyHeart)
 
   const formatData = (results: apiSingleData[]): void => {
     const formatted = results.map(result => {
       return {
-        apiPageId: result._id,
-        apiPageQuotes: result.content,
-        apiPageAuthor: result.author
+        id: result._id,
+        quote: result.content,
+        author: result.author
       }
     })
     setApiPageQuotes(formatted)
@@ -94,41 +73,29 @@ const App = () => {
         setApiQuotes([
           ...apiQuotes,
           {
-            apiId: data._id,
-            apiQuotes: data.content,
-            apiAuthor: data.author
+            id: data._id,
+            quote: data.content,
+            author: data.author
           }
         ])
       })
-    // .then(data => console.log('r',data))
-
     fetchFirstPage()
       .then(data => formatData(data.results))
-    // .then(data => console.log('page', data))
-
   }, [])
 
   const clickFavorite = (favQuote: any) => {
-    // console.log('handleClick')
-    // console.log('quotes', quotes)
-    // console.log('apiPage', apiPageQuotes)
-    // setHeartColor(emptyHeart)
-    favQuote.isFavorite = true
-    if (favQuote.isFavorite) {
+    if (!favorited.includes(favQuote)) {
       setFavorited([...favorited, favQuote])
-      console.log('favs!!!', favorited);
     }
   }
 
   return (
     <div className='app'>
-
       <div className='navigation'>
-        <h1 className='zenTon'> zenton 🌱 </h1>
+        <h1 className='zenton'> zenton 🌱 </h1>
         <NavLink className='home' to='/'> Home </NavLink>
         <NavLink className='favorites' to='/favorites'> Favorites </NavLink>
       </div>
-
       <div className='main'>
         <Switch>
 
@@ -136,6 +103,9 @@ const App = () => {
             <Form
               quotes={quotes}
               setQuotes={setQuotes}
+              apiQuotes={apiQuotes}
+              apiPageQuotes={apiPageQuotes}
+              favorited={favorited}
             />
 
             <QuotesContainer
@@ -144,15 +114,19 @@ const App = () => {
               apiPageQuotes={apiPageQuotes}
               clickFavorite={clickFavorite}
               favorited={favorited}
+              // setHeartColor={setHeartColor}
+              // heartColor={heartColor}
             />
           </Route>
 
           <Route exact path='/favorites'>
             <Favorites
+              setFavorited={setFavorited}
               favorited={favorited}
               quotes={quotes}
               apiQuotes={apiQuotes}
-              apiPageQuotes={apiPageQuotes} />
+              apiPageQuotes={apiPageQuotes}
+            />
           </Route>
 
           <Route render={() => <h2>This Path Does Not Exist!</h2>} />
@@ -164,4 +138,5 @@ const App = () => {
 }
 
 export default App
+
 

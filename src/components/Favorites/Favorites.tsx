@@ -7,11 +7,10 @@ import './Favorites.css'
 const Favorites: React.FC<quoteType> = ({ favorited }) => {
 
   const renderfavQuotes = (): JSX.Element[] => {
-    console.log('favorite page', favorited)
     return favorited.map((favorite:any) => {
       return (
         <li key={favorite.id ?? Date.now()}> 
-          <div className='user-quote'> " {favorite.favQuote} " - {favorite.favAuthor} </div>
+          <div className='user-quote'> " {favorite.quote} " - {favorite.author} </div>
         </li>
       )
     })

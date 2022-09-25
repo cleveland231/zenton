@@ -11,7 +11,7 @@ const QuotesContainer: React.FC<quoteType> = ({ quotes, apiQuotes, apiPageQuotes
     return quotes.map(quote => {
       return (
         <li key={quote.id}> 
-          <div className='user-quote'> " {quote.userQuote} " - You </div>
+          <div className='user-quote'> " {quote.quote} " - You </div>
           <button className='favorite-button' onClick={() => clickFavorite(quote)}> 💚 </button>
         </li>
       )
@@ -22,8 +22,8 @@ const QuotesContainer: React.FC<quoteType> = ({ quotes, apiQuotes, apiPageQuotes
     // console.log('api', apiQuotes)
     return apiQuotes.map(apiQuote => {
       return (
-        <li key={apiQuote.apiId}>
-          <div className='user-quote'> " {apiQuote.apiQuotes} " - {apiQuote.apiAuthor} </div>
+        <li key={apiQuote.id}>
+          <div className='user-quote'> " {apiQuote.quote} " - {apiQuote.author} </div>
           <button className='favorite-button' onClick={() => clickFavorite(apiQuote)}> 💚 </button>
         </li>
       )
@@ -34,9 +34,9 @@ const QuotesContainer: React.FC<quoteType> = ({ quotes, apiQuotes, apiPageQuotes
     // console.log('apiPage', apiPageQuotes)
     return apiPageQuotes.map(apiPageQuote => {
       return (
-        <li key={apiPageQuote.apiPageId}>
-          <div className='user-quote'> " {apiPageQuote.apiPageQuotes} " - {apiPageQuote.apiPageAuthor} </div>
-          <button className='favorite-button' onClick={() => clickFavorite(apiPageQuote)} > 💚 </button>
+        <li key={apiPageQuote.id}>
+          <div className='user-quote'> " {apiPageQuote.quote} " - {apiPageQuote.author} </div>
+          <button className='favorite-button' onClick={() => clickFavorite(apiPageQuote)}> 💚 </button>
         </li>
       )
     })
